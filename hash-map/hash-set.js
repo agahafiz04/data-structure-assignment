@@ -1,4 +1,4 @@
-export class hashMapSet {
+class hashMapSet {
   constructor() {
     this.table = new Array(16);
     this.size = 0;
@@ -76,24 +76,23 @@ export class hashMapSet {
   remove(key) {
     const index = this.hash(key, this.table.length);
     const table = this.table[index];
-    const indexNumber = [];
 
     if (!table || !this.has(key)) {
       console.log("Key Doesn't Exist!");
       return null;
     }
 
+    this.table[index] = [];
+
     for (let i = 0; i < table.length; i++) {
-      if (table[i] === key) {
-        indexNumber.push(i);
+      if (table[i] !== key) {
+        this.table[index].push(table[i]);
         this.size--;
       }
     }
 
-    const removeKey = table.splice(indexNumber[0], indexNumber.length);
-
     console.log("Key Successfully Removed");
-    return removeKey;
+    return this;
   }
 
   // length returns the number of stored keys in the hash map.
@@ -134,3 +133,12 @@ export class hashMapSet {
     return hashArray;
   }
 }
+
+const myTableOne = new hashMapSet();
+
+myTableOne.set("dob", "Hello");
+myTableOne.set("lastName", "yow");
+myTableOne.set("lastName", "yows");
+myTableOne.set("dob", "Nice");
+myTableOne.set("lastName", "yow");
+console.log(myTableOne);
