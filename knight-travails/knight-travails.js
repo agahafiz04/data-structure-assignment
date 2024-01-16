@@ -5,17 +5,6 @@ function createBoard(position, path) {
   return { position, path };
 }
 
-const offsets = [
-  [1, 2],
-  [1, -2],
-  [2, 1],
-  [2, -1],
-  [-1, 2],
-  [-1, -2],
-  [-2, 1],
-  [-2, -1],
-];
-
 function knightMoves([x1, y1], [x2, y2]) {
   let queue = [createBoard([x1, y1], [[x1, y1]])];
   let current = queue.shift();
